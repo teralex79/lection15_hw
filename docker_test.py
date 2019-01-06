@@ -10,6 +10,27 @@ green = '\033[' + str(32) + 'm'
 yellow = '\033[' + str(33) + 'm'
 grey = '\033[' + str(90) + 'm'
 
+
+def frmt_img_size(sz, cnt=0):
+  
+  dim_tupl = ('B', 'KB', 'MB', 'GB', 'TB')
+  frmt_tupl = ('{0:.0f}', '{0:.1f}', '{0:.2f}')
+
+  sz = sz/1000.
+  cnt += 1
+  if sz >= 1000.:
+    f_str = frmt_img_size(sz, cnt)    
+  else:
+    if sz >= 100.:
+      frmt = frmt_tupl[0]
+    elif sz >= 10.:
+      frmt = frmt_tupl[1]
+    else:
+      frmt = frmt_tupl[2]
+    f_str = frmt.format(sz) + dim_tupl[cnt]
+  return f_str
+
+
 url = 'http://192.168.56.103:2376/'
 #url = 'http://192.168.56.101:2376/'
 
@@ -99,11 +120,9 @@ for item in tupl1:
           if l_tag > max_tag: max_tag = l_tag + 3 
           tag_list.append(tag)
 
-          sz = '{:.1f}'.format(img['Size']/1000000) + 'MB'
-#          l_size = len(str(img['Size']))  
+          sz = frmt_img_size(img['Size'])
           l_size = len(sz)  
           if l_size > max_size: max_size = l_size + 3
-#          size_list.append(img['Size'])
           size_list.append(sz)
       
       for i in range(0,n+1):
