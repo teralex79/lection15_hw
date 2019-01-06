@@ -2,7 +2,6 @@
 
 import requests
 import json
-#from colorama import Fore, Back, Style, init
 
 white = '\033[' + str(0) + 'm'
 red = '\033[' + str(31) + 'm'
@@ -68,17 +67,30 @@ for item in tupl1:
     elif n == 0:
       n = 'no'
     print(yellow + 'You have {0} {1}.'.format(n, w1) + white)
-    hd_str = ''
-    for nm in head_dic[item]:
-      if nm == 'RepoTags': nm = nm[4:-1]
-      hd_str += '{0:<15s}'.format(nm.upper())
+    
     if len(r_json) > 0:
-      print(hd_str)
+      id_list = ['ID']
+      tag_list = ['TAG']
+      size_list = ['SIZE']
+
+      max_id = 15
+      max_tag = 0 
+      max_size = 0
       for img in r_json:
-        img_str = ''
-        for nm in head_dic[item]:
-          if nm == 'Id': 
-             img[nm] = img[nm].split(':')[1][:12]
-          img_str += '{0:>15s}'.format(str(img[nm]))
-        print(img_str)
- 
+        for tags in img['RepoTags']:
+          tag = tags.split(':')[1]
+          l_tag = len(tag)
+          if l_tag > max_tag: max_tag = l_tag + 3 
+          tag_list.append(tag)
+
+          id_list.append(img['Id'].split(':')[1][:12])
+
+          l_size = len(str(img['Size']))  
+          if l_size > max_size: max_size = l_size + 3
+          size_list.append(img['Size'])
+      for i in range(0,n+1):
+        frmt_id = '{0:<' + str(max_id) + '} '
+        frmt_tag = '{1:<' + str(max_tag) + '} '
+        frmt_size = '{2:<' + str(max_size) + '}'
+        frmt = frmt_id + frmt_tag + frmt_size
+        print(frmt.format(id_list[i], tag_list[i], size_list[i]))      
