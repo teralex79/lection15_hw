@@ -3,13 +3,15 @@
 import requests
 import json
 
+# colors for strings
 white = '\033[' + str(0) + 'm'
 red = '\033[' + str(31) + 'm'
 green = '\033[' + str(32) + 'm'
 yellow = '\033[' + str(33) + 'm'
 grey = '\033[' + str(90) + 'm'
 
-url = 'http://192.168.56.103:2376/'
+# url = 'http://192.168.56.103:2376/'
+url = 'http://192.168.56.101:2376/'
 
 tupl1 = ('containers', 'images')
 addstr1 = '/json?all=1'
@@ -20,12 +22,16 @@ head_dic = {'containers': ('Id', 'Names', 'Image'), 'images': ('Id', 'RepoTags',
 
 for item in tupl1:
   if item == 'containers':
+# Containers info  
     for stt in filtr_tupl:
       fltr = json.dumps({'status': [stt]})
+# Collecting request string for containers, filtered by status.        
       get_str = url + item + addstr1 + addstr2 + fltr
       r = requests.get(get_str)
       r_json = json.loads(r.text)
+# Counting filtered containers
       n = len(r_json)
+
       clr = grey
       if len(r_json) > 0:
         clr = yellow
@@ -39,14 +45,16 @@ for item in tupl1:
         w1 = 'container'
       elif n == 0:
         n = 'no'
-      msg = ''
- 
+
+# Printing colored string with count of filtered containers.
       print(clr + 'You have {0} \"{1}\" {2}.'.format(n, stt, w1) + white)
       hd_str = ''
-      for nm in head_dic[item]:
-        hd_str += '{0:<15s}'.format(nm.upper())
       if len(r_json) > 0:
+# Printing head string.
+        for nm in head_dic[item]:
+          hd_str += '{0:<15s}'.format(nm.upper())
         print(hd_str)
+# Collecting and printing containers info strings
         for cont in r_json:
           cont_str = '' 
           for nm in head_dic[item]:
@@ -57,10 +65,14 @@ for item in tupl1:
             cont_str += '{0:<15s}'.format(cont[nm])
           print(cont_str)
   else:
+# Images info    
     get_str = url + item + addstr1 + addstr2
     r = requests.get(get_str)
     r_json = json.loads(r.text)
+
+# Cointing images    
     n = len(r_json)
+# Printing colored string with count of images.  
     w1 = item
     if n == 1:
       w1 = 'image'
@@ -73,21 +85,24 @@ for item in tupl1:
       tag_list = ['TAG']
       size_list = ['SIZE']
 
+# Collecting and printing formatted strings with images info. 
       max_id = 15
       max_tag = 0 
       max_size = 0
+      
       for img in r_json:
         for tags in img['RepoTags']:
+          id_list.append(img['Id'].split(':')[1][:12])
+ 
           tag = tags.split(':')[1]
           l_tag = len(tag)
           if l_tag > max_tag: max_tag = l_tag + 3 
           tag_list.append(tag)
 
-          id_list.append(img['Id'].split(':')[1][:12])
-
           l_size = len(str(img['Size']))  
           if l_size > max_size: max_size = l_size + 3
           size_list.append(img['Size'])
+      
       for i in range(0,n+1):
         frmt_id = '{0:<' + str(max_id) + '} '
         frmt_tag = '{1:<' + str(max_tag) + '} '
