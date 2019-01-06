@@ -10,8 +10,8 @@ green = '\033[' + str(32) + 'm'
 yellow = '\033[' + str(33) + 'm'
 grey = '\033[' + str(90) + 'm'
 
-# url = 'http://192.168.56.103:2376/'
-url = 'http://192.168.56.101:2376/'
+url = 'http://192.168.56.103:2376/'
+#url = 'http://192.168.56.101:2376/'
 
 tupl1 = ('containers', 'images')
 addstr1 = '/json?all=1'
@@ -99,9 +99,12 @@ for item in tupl1:
           if l_tag > max_tag: max_tag = l_tag + 3 
           tag_list.append(tag)
 
-          l_size = len(str(img['Size']))  
+          sz = '{:.1f}'.format(img['Size']/1000000) + 'MB'
+#          l_size = len(str(img['Size']))  
+          l_size = len(sz)  
           if l_size > max_size: max_size = l_size + 3
-          size_list.append(img['Size'])
+#          size_list.append(img['Size'])
+          size_list.append(sz)
       
       for i in range(0,n+1):
         frmt_id = '{0:<' + str(max_id) + '} '
