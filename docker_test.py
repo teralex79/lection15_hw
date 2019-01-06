@@ -31,8 +31,8 @@ def frmt_img_size(sz, cnt=0):
   return f_str
 
 
-url = 'http://192.168.56.103:2376/'
-#url = 'http://192.168.56.101:2376/'
+# url = 'http://192.168.56.103:2376/'
+url = 'http://192.168.56.101:2376/'
 
 tupl1 = ('containers', 'images')
 addstr1 = '/json?all=1'
