@@ -1,25 +1,48 @@
-INFO:werkzeug: * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
-INFO:werkzeug:127.0.0.1 - - [07/Jan/2019 23:32:15] "POST /login HTTP/1.1" 500 -
-ERROR:werkzeug:Error on request:
+Exception on /login [POST]
 Traceback (most recent call last):
-  File "/usr/lib/python3.6/site-packages/werkzeug/serving.py", line 270, in run_wsgi
-    execute(self.server.app)
-  File "/usr/lib/python3.6/site-packages/werkzeug/serving.py", line 258, in execute
-    application_iter = app(environ, start_response)
-  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 2309, in __call__
-    return self.wsgi_app(environ, start_response)
-  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 2295, in wsgi_app
-    response = self.handle_exception(e)
-  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1745, in handle_exception
-    self.log_exception((exc_type, exc_value, tb))
-  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1761, in log_exception
-    ), exc_info=exc_info)
-  File "/usr/lib64/python3.6/logging/__init__.py", line 1337, in error
-    self._log(ERROR, msg, args, **kwargs)
-  File "/usr/lib64/python3.6/logging/__init__.py", line 1444, in _log
-    self.handle(record)
-  File "/usr/lib64/python3.6/logging/__init__.py", line 1454, in handle
-    self.callHandlers(record)
-  File "/usr/lib64/python3.6/logging/__init__.py", line 1515, in callHandlers
-    if record.levelno >= hdlr.level:
-AttributeError: 'NoneType' object has no attribute 'level'
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./hw15_extra.py", line 36, in login
+    un = request.json['user']
+KeyError: 'user'
+A warning occurred (42 apples)
+Info
+Info
+[2019.01.08 16:47:36] - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./hw15_extra.py", line 42, in login
+    answ = valid_login(un, ps, msg, rm_ip)
+  File "./hw15_extra.py", line 20, in valid_login
+    logger.info(uname, msg)
+NameError: name 'logger' is not defined
+[2019.01.08 16:51:53] - INFO - teralex msg
+[2019.01.08 16:52:11] - INFO - teralex Hello
+[2019.01.08 16:52:31] - WARNING - 127.0.0.1
+[2019.01.08 16:52:59] - INFO - teralex79 Hello
+[2019.01.08 16:53:42] - WARNING - 127.0.0.1
+[2019.01.08 16:56:14] - WARNING - 127.0.0.1
+[2019.01.08 16:56:45] - INFO - teralex79 Hello
+[2019.01.08 16:56:53] - WARNING - 127.0.0.1
+[2019.01.08 16:57:00] - INFO - teralex Hello
