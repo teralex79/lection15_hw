@@ -8,13 +8,16 @@ import logging
 app = Flask(__name__)
 
 def valid_login(uname, ps, msg, rm_ip):
-
+  import hashlib
+  
   answ = 'Received!'
-  with open('./test.json', 'r') as of:
+  with open('./login.json', 'r') as of:
     dic_un = json.load(of)
     of.close
   if  uname in dic_un:
-    if dic_un[uname] == ps:
+    bt = bytes(ps, encoding = 'utf-8')
+    h = hashlib.sha1(bt)
+    if dic_un[uname] == h.hexdigest():
       app.logger.info('{0} {1}'.format(uname, msg))
     else:
       answ = 'Wrong password!'

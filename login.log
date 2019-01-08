@@ -46,3 +46,83 @@ NameError: name 'logger' is not defined
 [2019.01.08 16:56:45] - INFO - teralex79 Hello
 [2019.01.08 16:56:53] - WARNING - 127.0.0.1
 [2019.01.08 16:57:00] - INFO - teralex Hello
+[2019.01.08 17:31:40] - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./hw15_extra.py", line 41, in login
+    answ = valid_login(un, ps, msg, rm_ip)
+  File "./hw15_extra.py", line 18, in valid_login
+    if dic_un[uname] == hashlib.sha1(b + ps):
+NameError: name 'b' is not defined
+[2019.01.08 17:32:36] - WARNING - 127.0.0.1
+[2019.01.08 17:34:03] - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./hw15_extra.py", line 42, in login
+    answ = valid_login(un, ps, msg, rm_ip)
+  File "./hw15_extra.py", line 18, in valid_login
+    ps_str = b + ps
+NameError: name 'b' is not defined
+[2019.01.08 17:35:00] - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./hw15_extra.py", line 42, in login
+    answ = valid_login(un, ps, msg, rm_ip)
+  File "./hw15_extra.py", line 19, in valid_login
+    if dic_un[uname] == hashlib.sha1(ps_str):
+TypeError: Unicode-objects must be encoded before hashing
+[2019.01.08 17:38:45] - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./hw15_extra.py", line 42, in login
+    answ = valid_login(un, ps, msg, rm_ip)
+  File "./hw15_extra.py", line 18, in valid_login
+    bt = bytes(ps)
+TypeError: string argument without an encoding
+[2019.01.08 17:39:26] - WARNING - 127.0.0.1
+[2019.01.08 17:43:12] - WARNING - 127.0.0.1
+[2019.01.08 17:46:52] - INFO - teralex Hello
