@@ -5,13 +5,39 @@ from datetime import datetime
 
 print(datetime.now())
 
+#logging.basicConfig(filename="sample.log", level=logging.INFO)
 # Сообщение отладочное
-logging.debug( u'This is a debug message' )
+#logging.debug( 'This is a debug message' )
 # Сообщение информационное
-logging.info( u'This is an info message' )
+#logging.info( 'This is an info message' )
 # Сообщение предупреждение
-logging.warning( u'This is a warning' )
+#logging.warning( 'This is a warning' )
 # Сообщение ошибки
-logging.error( u'This is an error message' )
+#logging.error( 'This is an error message' )
 # Сообщение критическое
-logging.critical( u'FATAL!!!' )
+#logging.critical( 'FATAL!!!' )
+
+logger = logging.getLogger("exampleApp")
+logger.setLevel(logging.INFO)
+logger2 = logging.getLogger("exampleApp2")
+logger2.setLevel(logging.INFO)
+# create the logging file handler
+fh = logging.FileHandler("sample.log")
+fh2 = logging.FileHandler("sample.log")
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter2 = logging.Formatter('%(asctime)s - %(levelname)s - %(name)s  - %(message)s')
+fh.setFormatter(formatter)
+fh2.setFormatter(formatter2)
+    
+# add handler to logger object
+logger.addHandler(fh)
+logger2.addHandler(fh2)
+    
+logger.info("Program started")
+logger2.info("Program started 2")
+logging.info("Program started")
+# result = otherMod2.add(7, 8)
+logger.info("Done!")
+logger2.info("Done! 2")
+ 
